@@ -197,7 +197,7 @@ for selgem = 1,5 do
 	end
 end
 
-local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, chunk_size, ore_per_chunk, height_min, height_max)
+local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, ore_per_chunk, height_min, height_max)
 	if maxp.y < height_min or minp.y > height_max then
 		return
 	end
@@ -206,9 +206,14 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 	local volume = (maxp.x-minp.x+1)*(y_max-y_min+1)*(maxp.z-minp.z+1)
 	local pr = PseudoRandom(seed)
 	local num_chunks = math.floor(chunks_per_volume * volume)
+	local chunk_size = 3
+	if ore_per_chunk <= 4 then
+		chunk_size = 2
+	end
 	local inverse_chance = math.floor(chunk_size*chunk_size*chunk_size / ore_per_chunk)
 	--print("generate_ore num_chunks: "..dump(num_chunks))
 	for i=1,num_chunks do
+	if (y_max-chunk_size+1 <= y_min) then return end
 		local y0 = pr:next(y_min, y_max-chunk_size+1)
 		if y0 >= height_min and y0 <= height_max then
 			local x0 = pr:next(minp.x, maxp.x-chunk_size+1)
@@ -241,11 +246,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		current_seed = current_seed + 1
 		return current_seed
 	end
-	generate_ore("gems:mineral_garnet", "default:stone", minp, maxp, get_next_seed(), 1/7/7/7, 3, 1, -31000, -64)
-	generate_ore("gems:mineral_aquamarine", "default:stone", minp, maxp, get_next_seed(), 1/7/7/7, 3, 1, -31000, -128)
-	generate_ore("gems:mineral_topaz", "default:stone", minp, maxp, get_next_seed(), 1/7/7/7, 3, 1, -31000, -256)
-	generate_ore("gems:mineral_diamond", "default:stone", minp, maxp, get_next_seed(), 1/7/7/7, 3, 1, -31000, -512)
-	generate_ore("gems:mineral_opal", "default:stone", minp, maxp, get_next_seed(), 1/7/7/7, 3, 1, -31000, -1024)
+	generate_ore("gems:mineral_garnet", "default:stone", minp, maxp, get_next_seed(), 1/7/7/7, 1, -31000, -64)
+	generate_ore("gems:mineral_aquamarine", "default:stone", minp, maxp, get_next_seed(), 1/7/7/7, 1, -31000, -128)
+	generate_ore("gems:mineral_topaz", "default:stone", minp, maxp, get_next_seed(), 1/7/7/7, 1, -31000, -256)
+	generate_ore("gems:mineral_diamond", "default:stone", minp, maxp, get_next_seed(), 1/7/7/7, 1, -31000, -512)
+	generate_ore("gems:mineral_opal", "default:stone", minp, maxp, get_next_seed(), 1/7/7/7, 1, -31000, -1024)
 end)
 
 print("[Gems] Loaded!")
