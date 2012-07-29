@@ -15,7 +15,7 @@ Steel, gold, and mithral are the only encrustable tools. Mese cannot benefit
 from the effects of gems because it lacks the magical attunement to be
 encrusted (or, in other words, balance).
 
-GEM			BONUSES
+GEM		BONUSES
 garnet		5%
 aquamarine	10%
 topaz		15%
