@@ -84,8 +84,8 @@ metal = {"steel","gold","mithril"}
 formalmetal = {"Steel","Gold","Mithril"}
 gem = {"garnet","aquamarine","topaz","diamond","opal"}
 
-toolbenefit_one = {0.95,0.9,0.85,0.8,0.75}
-toolbenefit_two = {1.05,1.1,1.15,1.2,1.25}
+toolbenefit_one = {0.95,0.95,0.85,0.9,0.65}
+toolbenefit_two = {1.05,1.1,1.05,1.15,0.9}
 
 pickbases = {{4,1.6,1,10,2},{2,0.5,0.3,70,1},{2.25,0.55,0.35,200,1}}
 axecbases = {{2,1.6,1,10,2},{1.7,0.4,0.35,70,1},{1.75,0.45,0.45,200,1}}
